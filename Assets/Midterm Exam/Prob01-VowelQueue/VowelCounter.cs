@@ -28,9 +28,9 @@ namespace MidtermExam.Prob01
             }
 
             int count = 0;
-            int total = alphabets.Count;
+            int to = alphabets.Count;
 
-            for (int i = 0; i < total; i++)
+            for (int i = 0; i < to; i++)
             {
                 string item = alphabets.Dequeue();
 

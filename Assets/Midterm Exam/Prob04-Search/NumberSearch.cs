@@ -35,16 +35,38 @@ namespace MidtermExam.Prob04
         /// ห้ามแก้ไข array ตัวอย่าง: [1, 2, 2, 2, 5] ค้นหา 2 คืน 1, 2 หรือ 3 ได้
         /// ใช้เวลา O(log n) และเขียนคอมเมนต์อธิบายเหตุผลของเวลาที่ใช้เหนือคำตอบ
         /// </remarks>
+        // Time Complexity: O(log n)
+        // เหตุผล: ในแต่ละรอบการทำงาน อัลกอริทึมจะเปรียบเทียบข้อมูลที่ตำแหน่งกึ่งกลาง (mid) 
+        // แล้วตัดช่วงการค้นหาออกทีละครึ่ง ทำให้พื้นที่การค้นหาลดลงครึ่งหนึ่งในทุกๆ ขั้นตอน (Divide and Conquer)
         public int AS05_BinarySearch(int[] sortedValues, int target)
         {
-            // TODO: เขียนคำตอบแทนคำสั่ง throw ด้านล่าง
-            // 1. จัดการ input ที่เป็น null/ว่าง และกำหนดขอบเขต index ของช่วงค้นหา
-            // 2. เลือก index ตรงกลางของช่วง แล้วเปรียบเทียบค่าตรงกลางกับ target
-            // 3. ถ้ายังไม่ตรง ให้เลือกค้นหาต่อเฉพาะครึ่งซ้ายหรือครึ่งขวาตามลำดับค่าที่เรียงไว้
-            //    ต้องตัดตำแหน่งที่ตรวจแล้วออก เพื่อให้ช่วงเล็กลงและไม่เกิดการวนซ้ำไม่จบ
-            // 4. ถ้าช่วงค้นหาหมดและยังไม่พบ ให้คืนค่าที่โจทย์กำหนดสำหรับกรณีไม่พบ
-            // ลองตรวจกรณีสมาชิกเดียว สองสมาชิก เป้าหมายอยู่หัว/ท้าย และเป้าหมายอยู่นอกช่วงค่า
-            throw new NotImplementedException();
+            if (sortedValues == null || sortedValues.Length == 0)
+            {
+                return -1;
+            }
+
+            int left = 0;
+            int right = sortedValues.Length - 1;
+
+            while (left <= right)
+            {
+                int mid = left + (right - left) / 2;
+
+                if (sortedValues[mid] == target)
+                {
+                    return mid;
+                }
+                else if (sortedValues[mid] < target)
+                {
+                    left = mid + 1;
+                }
+                else
+                {
+                    right = mid - 1;
+                }
+            }
+
+            return -1;
         }
     }
 }
